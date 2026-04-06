@@ -1,0 +1,9 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Twin Cities Rink Calendar//EN
+X-WR-CALDESC:Open skate\, stick & puck\, and open hockey sessions from 7 T
+ win Cities rinks
+X-WR-CALNAME:Twin Cities Ice Rink Sessions
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+X-WR-TIMEZONE:America/Chicago
+END:VCALENDAR
