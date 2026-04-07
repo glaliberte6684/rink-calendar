@@ -254,7 +254,7 @@ def main():
         raise SystemExit("GEMINI_API_KEY environment variable not set.")
 
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-2.0-flash")  # free tier, fast, generous limits
+    model = genai.GenerativeModel("gemini-2.5-flash")  # free tier, fast, generous limits
 
     output_dir = Path(os.environ.get("OUTPUT_DIR", "."))
     output_dir.mkdir(parents=True, exist_ok=True)
