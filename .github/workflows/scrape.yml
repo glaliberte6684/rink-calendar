@@ -2,8 +2,8 @@ name: Scrape Rink Schedules
 
 on:
   schedule:
-    # Runs every day at 7:00 AM Central (12:00 UTC)
-    - cron: "0 12 * * *"
+    # Runs every 4 hours (at 12, 16, 20, 00, 04, 08 UTC = 7am, 11am, 3pm, 7pm, 11pm, 3am Central)
+    - cron: "0 */4 * * *"
   workflow_dispatch:          # lets you trigger it manually from GitHub
 
 permissions:
@@ -33,14 +33,14 @@ jobs:
       - name: Run scraper
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          OUTPUT_DIR: .
+          OUTPUT_DIR: public
         run: python scripts/scrape.py
 
       - name: Commit updated calendar
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add rink-schedule.ics summary.json
+          git add public/rink-schedule.ics public/summary.json
           # Only commit if something actually changed
           git diff --cached --quiet || git commit -m "chore: update rink schedule $(date -u +'%Y-%m-%d')"
           git push
